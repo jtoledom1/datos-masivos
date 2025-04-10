@@ -100,7 +100,7 @@ var.test(Metodo_A, Metodo_B)  # Comparar varianzas
 
 p>0.05
 
-Menor son similares 
+Mayor son similares 
 
 p<0.05
 
