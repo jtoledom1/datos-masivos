@@ -2,7 +2,7 @@
 
 ![](Images/2025-04-10-12-41-22-image.png)
 
-<img title="" src="images/2025-04-10-12-40-38-image.png" alt="loading-ag-1728" width="648">
+
 
 ```python
 # El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
