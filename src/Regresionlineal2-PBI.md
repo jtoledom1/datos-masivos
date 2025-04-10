@@ -1,6 +1,6 @@
 # 🦎Regresión Lineal 2🍉
 
-![](images\2025-04-10-12-45-50-image.png)
+![](Images/2025-04-10-12-45-50-image.png)
 
 ```python
 # El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
