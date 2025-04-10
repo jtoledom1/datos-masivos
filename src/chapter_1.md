@@ -1,3 +1,3 @@
 # Chapter 1
 
-[Regresión linear](./Regresionlinear-PBI.md)
+[Regresión-linear](./Regresionlinear-PBI.md)
