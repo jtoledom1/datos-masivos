@@ -210,7 +210,7 @@ plt.scatter(nuevo_importe, prediccion_nueva, color='green', zorder=5)
 plt.show()
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="regresión-lineal-2"><a class="header" href="#regresión-lineal-2">🦎Regresión Lineal 2🍉</a></h1>
-<p><img src="images%5C2025-04-10-12-45-50-image.png" alt="" /></p>
+<p><img src="Images/2025-04-10-12-45-50-image.png" alt="" /></p>
 <pre><code class="language-python"># El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
 
 # dataset = pandas.DataFrame(horas, estudio)
@@ -247,6 +247,89 @@ plt.title(f'horas Predicción nueva de: {prediccion_nueva[0]:.2f}')
 plt.scatter(nuevo_importe, prediccion_nueva, color='green', zorder=5) 
 
 #visualizar el resultado
+plt.show()
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-clustering-1-"><a class="header" href="#-clustering-1-">😁 Clustering 1 🏢</a></h1>
+<h2 id="caso-1"><a class="header" href="#caso-1">Caso 1:</a></h2>
+<p><strong>DBSCAN</strong></p>
+<img src="Images/Clustering_Grafica_Barras.png" title="" alt="" data-align="center">
+<pre><code class="language-python"># El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
+
+# dataset = pandas.DataFrame(Coste unitario, Importe Coste total, Importe venta total, Precio Unitario, Unidades)
+# dataset = dataset.drop_duplicates()
+
+# Pegue o escriba aquí el código de script:
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import DBSCAN
+
+dataset = dataset
+
+dataset = dataset[['Coste unitario', 'Importe Coste total']]
+
+#crear y ajustar el modelo de KMeans
+dbscan = DBSCAN(eps=0.2, min_samples=5)
+dataset['Unidades'] = dbscan.fit_predict(dataset)
+
+plt.figure(figsize=(8,6))
+plt.scatter(dataset['Coste unitario'], dataset['Importe Coste total'], c=dataset['Unidades'], cmap='viridis')
+plt.title('Segmentación de Clientes con DBSCAN')
+plt.xlabel('Edad')
+plt.ylabel('Ingresos')
+plt.show()
+</code></pre>
+<h2 id="caso-2"><a class="header" href="#caso-2">Caso 2:</a></h2>
+<p><strong>Número de Clusters</strong></p>
+<p><strong>K-means</strong></p>
+<img title="" src="Images/Clustering_Grafica_Dispersion.png" alt="" data-align="center" width="513">
+<pre><code class="language-python"># El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
+
+# dataset = pandas.DataFrame(Unidades, Coste unitario, Precio Unitario, Importe Coste total, Importe venta total)
+# dataset = dataset.drop_duplicates()
+
+# Pegue o escriba aquí el código de script:
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+dataset = dataset
+x= dataset[['Precio Unitario','Coste unitario']]
+
+kmeans= KMeans(n_clusters=10, random_state=42)
+dataset['Unidades']=kmeans.fit_predict(x)
+
+plt.figure(figsize=(10,6))
+plt.scatter(dataset['Precio Unitario'], dataset['Coste unitario'],c=dataset['Unidades'],cmap='viridis')
+plt.title('Clustering de K-means')
+plt.xlabel('Precio Unitario')
+plt.ylabel('Coste unitario')
+plt.show()
+</code></pre>
+<h2 id="caso-3"><a class="header" href="#caso-3">Caso 3</a></h2>
+<p><strong>K-means Cmap= Magma</strong></p>
+<img src="Images/kmeans_magma.png" title="" alt="" data-align="center">
+<pre><code class="language-python"># El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
+
+# dataset = pandas.DataFrame(Precio_Total, Satisfaccion cliente, Descuento,Precio_Total)
+# dataset = dataset.drop_duplicates()
+
+# Pegue o escriba aquí el código de script:
+import pandas as pd
+import numpy as np
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+datos = dataset[['Descuento','Precio_Total']]
+kmeans = KMeans(n_clusters=4)
+datos['Satisfaccion cliente'] = kmeans.fit_predict(datos)
+plt.figure(figsize=(10,6))
+plt.scatter(datos['Descuento'],datos['Precio_Total'], c=datos['Satisfaccion cliente'], cmap='magma')
+#cool, winter coolwarm
+plt.xlabel('Descuento')
+plt.ylabel('Numero de Precio_Total')
+plt.title('Clustering de productos por Descuento y Precio_Total')
+plt.colorbar(label='Cluster')
 plt.show()
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-pÁgina-web-"><a class="header" href="#-pÁgina-web-">🔰 PÁGINA WEB 🛠️</a></h1>

@@ -8,7 +8,7 @@ class MDBookSidebarScrollbox extends HTMLElement {
         super();
     }
     connectedCallback() {
-        this.innerHTML = '<ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Regresionlinear-PBI.html"><strong aria-hidden="true">2.</strong> Regresión-linear</a></li><li class="chapter-item expanded "><a href="Regresionlineal2-PBI.html"><strong aria-hidden="true">3.</strong> Regresión-lineal-2</a></li><li class="chapter-item expanded "><a href="PAGINA_WEB.html"><strong aria-hidden="true">4.</strong> PAGINA WEB</a></li></ol>';
+        this.innerHTML = '<ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li><li class="chapter-item expanded "><a href="Regresionlinear-PBI.html"><strong aria-hidden="true">2.</strong> Regresión-linear</a></li><li class="chapter-item expanded "><a href="Regresionlineal2-PBI.html"><strong aria-hidden="true">3.</strong> Regresión-lineal-2</a></li><li class="chapter-item expanded "><a href="Clustering_1.html"><strong aria-hidden="true">4.</strong> Clustering</a></li><li class="chapter-item expanded "><a href="PAGINA_WEB.html"><strong aria-hidden="true">5.</strong> PAGINA WEB</a></li></ol>';
         // Set the current, active page, and reveal it if it's hidden
         let current_page = document.location.href.toString().split("#")[0];
         if (current_page.endsWith("/")) {

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Regresión-lineal-2 - Datos Masivos</title>
+        <title>Clustering - Datos Masivos</title>
 
 
         <!-- Custom HTML head -->
@@ -155,44 +155,87 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="regresión-lineal-2"><a class="header" href="#regresión-lineal-2">🦎Regresión Lineal 2🍉</a></h1>
-<p><img src="Images/2025-04-10-12-45-50-image.png" alt="" /></p>
+                        <h1 id="-clustering-1-"><a class="header" href="#-clustering-1-">😁 Clustering 1 🏢</a></h1>
+<h2 id="caso-1"><a class="header" href="#caso-1">Caso 1:</a></h2>
+<p><strong>DBSCAN</strong></p>
+<img src="Images/Clustering_Grafica_Barras.png" title="" alt="" data-align="center">
 <pre><code class="language-python"># El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
 
-# dataset = pandas.DataFrame(horas, estudio)
+# dataset = pandas.DataFrame(Coste unitario, Importe Coste total, Importe venta total, Precio Unitario, Unidades)
 # dataset = dataset.drop_duplicates()
 
-# Pegue o escriba aquí el código de script:import numpy as np
+# Pegue o escriba aquí el código de script:
 import pandas as pd
-from sklearn.neighbors import KNeighborsClassifier
 import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
+from sklearn.cluster import DBSCAN
 
-#Declarar el modelo indicando que vamos a utilizar regresión lineal 
-model = LinearRegression()
+dataset = dataset
 
+dataset = dataset[['Coste unitario', 'Importe Coste total']]
 
-# Ajustar el modelo con 'horas' como predictor e 'estudio' como la variable objetivo
-model.fit(dataset[['horas']], dataset['estudio'])
+#crear y ajustar el modelo de KMeans
+dbscan = DBSCAN(eps=0.2, min_samples=5)
+dataset['Unidades'] = dbscan.fit_predict(dataset)
 
-# Hacer predicciones utilizando 'horas', es decir según la cantidad conocer el importe
-predicciones = model.predict(dataset[['horas']])
+plt.figure(figsize=(8,6))
+plt.scatter(dataset['Coste unitario'], dataset['Importe Coste total'], c=dataset['Unidades'], cmap='viridis')
+plt.title('Segmentación de Clientes con DBSCAN')
+plt.xlabel('Edad')
+plt.ylabel('Ingresos')
+plt.show()
+</code></pre>
+<h2 id="caso-2"><a class="header" href="#caso-2">Caso 2:</a></h2>
+<p><strong>Número de Clusters</strong></p>
+<p><strong>K-means</strong></p>
+<img title="" src="Images/Clustering_Grafica_Dispersion.png" alt="" data-align="center" width="513">
+<pre><code class="language-python"># El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
 
-# Graficar los resultados
-plt.scatter(dataset['horas'], dataset['estudio'], color='blue')  # Datos reales
-plt.plot(dataset['horas'], predicciones, color='red')  # Línea de regresión
+# dataset = pandas.DataFrame(Unidades, Coste unitario, Precio Unitario, Importe Coste total, Importe venta total)
+# dataset = dataset.drop_duplicates()
 
-nuevo_importe = 95  # El valor de las horas para el cual deseas predecir
-prediccion_nueva = model.predict([[nuevo_importe]])
+# Pegue o escriba aquí el código de script:
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
 
-plt.xlabel('horas')
-plt.ylabel('estudio')
-plt.title(f'horas Predicción nueva de: {prediccion_nueva[0]:.2f}')
+dataset = dataset
+x= dataset[['Precio Unitario','Coste unitario']]
 
-# Agregar el nuevo punto al gráfico analizar
-plt.scatter(nuevo_importe, prediccion_nueva, color='green', zorder=5) 
+kmeans= KMeans(n_clusters=10, random_state=42)
+dataset['Unidades']=kmeans.fit_predict(x)
 
-#visualizar el resultado
+plt.figure(figsize=(10,6))
+plt.scatter(dataset['Precio Unitario'], dataset['Coste unitario'],c=dataset['Unidades'],cmap='viridis')
+plt.title('Clustering de K-means')
+plt.xlabel('Precio Unitario')
+plt.ylabel('Coste unitario')
+plt.show()
+</code></pre>
+<h2 id="caso-3"><a class="header" href="#caso-3">Caso 3</a></h2>
+<p><strong>K-means Cmap= Magma</strong></p>
+<img src="Images/kmeans_magma.png" title="" alt="" data-align="center">
+<pre><code class="language-python"># El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
+
+# dataset = pandas.DataFrame(Precio_Total, Satisfaccion cliente, Descuento,Precio_Total)
+# dataset = dataset.drop_duplicates()
+
+# Pegue o escriba aquí el código de script:
+import pandas as pd
+import numpy as np
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+datos = dataset[['Descuento','Precio_Total']]
+kmeans = KMeans(n_clusters=4)
+datos['Satisfaccion cliente'] = kmeans.fit_predict(datos)
+plt.figure(figsize=(10,6))
+plt.scatter(datos['Descuento'],datos['Precio_Total'], c=datos['Satisfaccion cliente'], cmap='magma')
+#cool, winter coolwarm
+plt.xlabel('Descuento')
+plt.ylabel('Numero de Precio_Total')
+plt.title('Clustering de productos por Descuento y Precio_Total')
+plt.colorbar(label='Cluster')
 plt.show()
 </code></pre>
 
@@ -200,11 +243,11 @@ plt.show()
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="Regresionlinear-PBI.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="Regresionlineal2-PBI.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="Clustering_1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="PAGINA_WEB.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -214,11 +257,11 @@ plt.show()
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="Regresionlinear-PBI.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="Regresionlineal2-PBI.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="Clustering_1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="PAGINA_WEB.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
