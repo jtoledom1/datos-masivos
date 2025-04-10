@@ -4,4 +4,6 @@
 - [Regresión-linear](./Regresionlinear-PBI.md)
 - [Regresión-lineal-2](./Regresionlineal2-PBI.md)
 - [Clustering](./Clustering_1.md)
+- [Intro R](./Introduccion_R.md)
+- [Sintaxis R](./Sintaaxis.md)
 - [PAGINA WEB](./PAGINA_WEB.md)

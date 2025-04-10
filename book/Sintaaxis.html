@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Datos Masivos</title>
-        <meta name="robots" content="noindex">
+        <title>Sintaxis R - Datos Masivos</title>
 
 
         <!-- Custom HTML head -->
@@ -156,234 +155,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="chapter-1"><a class="header" href="#chapter-1">Chapter 1</a></h1>
-<ul>
-<li><a href="./Regresionlinear-PBI.html">Regresión-linear</a></li>
-<li><a href="./Regresionlineal2-PBI.html">Regresión-lineal-2</a></li>
-<li><a href="./PAGINA_WEB.html">PAGINA WEB</a></li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="regresión-linear"><a class="header" href="#regresión-linear">🔰Regresión Linear</a></h1>
-<p><img src="Images/2025-04-10-12-41-22-image.png" alt="" /></p>
-<pre><code class="language-python"># El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
-
-# dataset = pandas.DataFrame(año, Importe venta total)
-# dataset = dataset.drop_duplicates()
-
-# Pegue o escriba aquí el código de script:
-# El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
-
-# dataset = pandas.DataFrame(año, Coste unitario, Precio Unitario, Unidades)
-# dataset = dataset.drop_duplicates()
-
-# Pegue o escriba aquí el código de script:
-import numpy as np
-import pandas as pd
-from sklearn.neighbors import KNeighborsClassifier
-import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
-
-#Declarar el modelo indicando que vamos a utilizar regresión lineal 
-model = LinearRegression()
-
-# Ajustar el modelo con 'Unidades' como predictor e 'Importe venta total' como la variable objetivo
-model.fit(dataset[['año']], dataset['Importe venta total'])
-
-# Hacer predicciones utilizando 'Unidades', es decir según la cantidad conocer el importe
-predicciones = model.predict(dataset[['año']])
-
-# Graficar los resultados
-plt.scatter(dataset['año'], dataset['Importe venta total'], color='blue')  # Datos reales
-plt.plot(dataset['año'], predicciones, color='red')  # Línea de regresión
-plt.title('Regresión Lineal')
-
-nuevo_importe = 2023  # El valor de las unidades para el cual deseas predecir
-prediccion_nueva = model.predict([[nuevo_importe]])
-
-plt.title(f'Monto Predicción nueva de: {prediccion_nueva[0]:.2f}')
-plt.xlabel('año')
-plt.ylabel('Importe venta total')
-
-# Agregar el nuevo punto al gráfico analizar
-plt.scatter(nuevo_importe, prediccion_nueva, color='green', zorder=5) 
-
-#visualizar el resultado
-plt.show()
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="regresión-lineal-2"><a class="header" href="#regresión-lineal-2">🦎Regresión Lineal 2🍉</a></h1>
-<p><img src="Images/2025-04-10-12-45-50-image.png" alt="" /></p>
-<pre><code class="language-python"># El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
-
-# dataset = pandas.DataFrame(horas, estudio)
-# dataset = dataset.drop_duplicates()
-
-# Pegue o escriba aquí el código de script:import numpy as np
-import pandas as pd
-from sklearn.neighbors import KNeighborsClassifier
-import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
-
-#Declarar el modelo indicando que vamos a utilizar regresión lineal 
-model = LinearRegression()
-
-
-# Ajustar el modelo con 'horas' como predictor e 'estudio' como la variable objetivo
-model.fit(dataset[['horas']], dataset['estudio'])
-
-# Hacer predicciones utilizando 'horas', es decir según la cantidad conocer el importe
-predicciones = model.predict(dataset[['horas']])
-
-# Graficar los resultados
-plt.scatter(dataset['horas'], dataset['estudio'], color='blue')  # Datos reales
-plt.plot(dataset['horas'], predicciones, color='red')  # Línea de regresión
-
-nuevo_importe = 95  # El valor de las horas para el cual deseas predecir
-prediccion_nueva = model.predict([[nuevo_importe]])
-
-plt.xlabel('horas')
-plt.ylabel('estudio')
-plt.title(f'horas Predicción nueva de: {prediccion_nueva[0]:.2f}')
-
-# Agregar el nuevo punto al gráfico analizar
-plt.scatter(nuevo_importe, prediccion_nueva, color='green', zorder=5) 
-
-#visualizar el resultado
-plt.show()
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="-clustering-1-"><a class="header" href="#-clustering-1-">😁 Clustering 1 🏢</a></h1>
-<h2 id="caso-1"><a class="header" href="#caso-1">Caso 1:</a></h2>
-<p><strong>DBSCAN</strong></p>
-<img src="Images/Clustering_Grafica_Barras.png" title="" alt="" data-align="center">
-<pre><code class="language-python"># El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
-
-# dataset = pandas.DataFrame(Coste unitario, Importe Coste total, Importe venta total, Precio Unitario, Unidades)
-# dataset = dataset.drop_duplicates()
-
-# Pegue o escriba aquí el código de script:
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.cluster import DBSCAN
-
-dataset = dataset
-
-dataset = dataset[['Coste unitario', 'Importe Coste total']]
-
-#crear y ajustar el modelo de KMeans
-dbscan = DBSCAN(eps=0.2, min_samples=5)
-dataset['Unidades'] = dbscan.fit_predict(dataset)
-
-plt.figure(figsize=(8,6))
-plt.scatter(dataset['Coste unitario'], dataset['Importe Coste total'], c=dataset['Unidades'], cmap='viridis')
-plt.title('Segmentación de Clientes con DBSCAN')
-plt.xlabel('Edad')
-plt.ylabel('Ingresos')
-plt.show()
-</code></pre>
-<h2 id="caso-2"><a class="header" href="#caso-2">Caso 2:</a></h2>
-<p><strong>Número de Clusters</strong></p>
-<p><strong>K-means</strong></p>
-<img title="" src="Images/Clustering_Grafica_Dispersion.png" alt="" data-align="center" width="513">
-<pre><code class="language-python"># El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
-
-# dataset = pandas.DataFrame(Unidades, Coste unitario, Precio Unitario, Importe Coste total, Importe venta total)
-# dataset = dataset.drop_duplicates()
-
-# Pegue o escriba aquí el código de script:
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans
-
-dataset = dataset
-x= dataset[['Precio Unitario','Coste unitario']]
-
-kmeans= KMeans(n_clusters=10, random_state=42)
-dataset['Unidades']=kmeans.fit_predict(x)
-
-plt.figure(figsize=(10,6))
-plt.scatter(dataset['Precio Unitario'], dataset['Coste unitario'],c=dataset['Unidades'],cmap='viridis')
-plt.title('Clustering de K-means')
-plt.xlabel('Precio Unitario')
-plt.ylabel('Coste unitario')
-plt.show()
-</code></pre>
-<h2 id="caso-3"><a class="header" href="#caso-3">Caso 3</a></h2>
-<p><strong>K-means Cmap= Magma</strong></p>
-<img src="Images/kmeans_magma.png" title="" alt="" data-align="center">
-<pre><code class="language-python"># El código siguiente, que crea un dataframe y quita las filas duplicadas, siempre se ejecuta y actúa como un preámbulo del script: 
-
-# dataset = pandas.DataFrame(Precio_Total, Satisfaccion cliente, Descuento,Precio_Total)
-# dataset = dataset.drop_duplicates()
-
-# Pegue o escriba aquí el código de script:
-import pandas as pd
-import numpy as np
-from sklearn.cluster import KMeans
-import matplotlib.pyplot as plt
-
-datos = dataset[['Descuento','Precio_Total']]
-kmeans = KMeans(n_clusters=4)
-datos['Satisfaccion cliente'] = kmeans.fit_predict(datos)
-plt.figure(figsize=(10,6))
-plt.scatter(datos['Descuento'],datos['Precio_Total'], c=datos['Satisfaccion cliente'], cmap='magma')
-#cool, winter coolwarm
-plt.xlabel('Descuento')
-plt.ylabel('Numero de Precio_Total')
-plt.title('Clustering de productos por Descuento y Precio_Total')
-plt.colorbar(label='Cluster')
-plt.show()
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="introducción-a-r"><a class="header" href="#introducción-a-r">Introducción a R</a></h1>
-<p>Comunmente usado para:</p>
-<ul>
-<li>
-<p>Ciencia de datos</p>
-</li>
-<li>
-<p>Machine Learning</p>
-</li>
-<li>
-<p>Visualización de datos</p>
-</li>
-<li>
-<p>Finanzas</p>
-</li>
-<li>
-<p>Bioinformática</p>
-</li>
-<li>
-<p>Genómica</p>
-</li>
-</ul>
-<h2 id="librerías"><a class="header" href="#librerías">Librerías</a></h2>
-<ul>
-<li>
-<p><strong>ggplot2</strong>: Para visualización de datos.</p>
-</li>
-<li>
-<p><strong>dplyr</strong>: Para manipulación de datos.</p>
-</li>
-<li>
-<p><strong>tidyr</strong>: Para transformar datos.</p>
-</li>
-<li>
-<p><strong>caret</strong>: Para machine learning.</p>
-</li>
-<li>
-<p><strong>shiny</strong>: Para crear aplicaciones web interactivas.</p>
-</li>
-<li>
-<p><strong>lubridate</strong>: Para manejo de fechas y horas.</p>
-</li>
-<li>
-<p><strong>data.table</strong>: Para manejo eficiente de grandes volúmenes de datos.</p>
-</li>
-<li>
-<p><strong>plotly</strong>: Para gráficos interactivos</p>
-</li>
-</ul>
-<h2 id="crear-nuevo-r-script"><a class="header" href="#crear-nuevo-r-script">Crear nuevo R script</a></h2>
-<p><img src="C:%5CUsers%5CJtole%5CDocuments%5CiCloudDrive%5CDocuments%5Cscul%5CDatos%20Masivos%5CMEDIA%5CCrear%20archivo.png" alt="" /></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="sintaxis"><a class="header" href="#sintaxis">Sintaxis</a></h1>
+                        <h1 id="sintaxis"><a class="header" href="#sintaxis">Sintaxis</a></h1>
 <h2 id="creación-de-variables"><a class="header" href="#creación-de-variables">Creación de variables</a></h2>
 <pre><code class="language-r">x &lt;- 10
 y &lt;- 5
@@ -503,7 +275,7 @@ print (transpuesta)
 
 dim(matriz)
 </code></pre>
-<h2 id="librerías-1"><a class="header" href="#librerías-1">Librerías</a></h2>
+<h2 id="librerías"><a class="header" href="#librerías">Librerías</a></h2>
 <pre><code class="language-r">install.packages("tidyverse")
 install.packages("ggplot2")
 install.packages("reshape2")
@@ -516,52 +288,18 @@ install.packages("libridate")
 install.packages("data.table")
 install.packages("plotly")
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="-pÁgina-web-"><a class="header" href="#-pÁgina-web-">🔰 PÁGINA WEB 🛠️</a></h1>
-<ol>
-<li>
-<p>Requisitos</p>
-<p>Infraestructua</p>
-</li>
-<li>
-<p>Base de datos</p>
-<ol>
-<li>sql lite</li>
-</ol>
-</li>
-<li>
-<p>Web</p>
-<ol>
-<li></li>
-</ol>
-</li>
-<li>
-<p>Librerías</p>
-</li>
-<li>
-<p>Servicios</p>
-<ol>
-<li>
-<p>Open SSH</p>
-</li>
-<li>
-<p>DNS Dinamicos</p>
-</li>
-<li>
-<p>Correo electrónico</p>
-<ol>
-<li>PostFix</li>
-</ol>
-</li>
-</ol>
-</li>
-<li></li>
-</ol>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="Introduccion_R.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
+                            <a rel="next prefetch" href="PAGINA_WEB.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -569,7 +307,13 @@ install.packages("plotly")
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="Introduccion_R.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
+                    <a rel="next prefetch" href="PAGINA_WEB.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
@@ -608,11 +352,6 @@ install.packages("plotly")
 
         <!-- Custom JS scripts -->
 
-        <script>
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
 
     </div>
     </body>
